@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAP Compass</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/tabler-icons.min.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="app-logo"><i class="ti ti-compass"></i></div>
+        <div>
+          <div class="app-title">SAP Compass <span class="profile-pill" id="profile-pill" style="display:none"></span></div>
+          <div class="app-sub">Orienting new leaders in the SAP world</div>
+        </div>
+      </div>
+      <div class="live-badge"><div class="live-dot"></div> Live search</div>
+    </header>
+
+    <!-- Tabs -->
+    <nav class="tabs" role="tablist">
+      <button class="tab active" onclick="showTab('chat')" role="tab"><i class="ti ti-message-circle"></i>Ask</button>
+      <button class="tab" onclick="showTab('curriculum')" role="tab"><i class="ti ti-book"></i>Learn</button>
+      <button class="tab" onclick="showTab('swot')" role="tab"><i class="ti ti-chart-radar"></i>SWOT</button>
+      <button class="tab" onclick="showTab('glossary')" role="tab"><i class="ti ti-a-b"></i>Glossary</button>
+      <button class="tab" onclick="showTab('onboard')" role="tab"><i class="ti ti-user-circle"></i>Profile</button>
+    </nav>
+
+    <!-- Chat Pane -->
+    <section class="pane active" id="pane-chat" role="tabpanel">
+      <div class="chat-msgs" id="chat-msgs"></div>
+      <div class="quick-btns" id="quick-btns"></div>
+      <div class="chat-input-row">
+        <textarea
+          class="chat-input"
+          id="chat-input"
+          placeholder="Ask anything about SAP..."
+          rows="1"
+          onkeydown="handleKey(event)"
+          oninput="autoResize(this)"
+        ></textarea>
+        <button class="send-btn" id="send-btn" onclick="sendMsg()" aria-label="Send message">
+          <i class="ti ti-send"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Curriculum Pane -->
+    <section class="pane" id="pane-curriculum" role="tabpanel">
+      <div class="curriculum-pane" id="curriculum-pane"></div>
+    </section>
+
+    <!-- SWOT Pane -->
+    <section class="pane" id="pane-swot" role="tabpanel">
+      <div class="swot-pane" id="swot-pane"></div>
+    </section>
+
+    <!-- Glossary Pane -->
+    <section class="pane" id="pane-glossary" role="tabpanel">
+      <div class="glossary-pane">
+        <input
+          class="glossary-search"
+          id="glossary-search"
+          placeholder="Search SAP terms..."
+          oninput="filterGlossary(this.value)"
+          aria-label="Search glossary"
+        />
+        <div id="glossary-list"></div>
+      </div>
+    </section>
+
+    <!-- Profile / Onboard Pane -->
+    <section class="pane" id="pane-onboard" role="tabpanel">
+      <div class="onboard-wrap" id="onboard-wrap"></div>
+    </section>
+
+  </div>
+
+  <!-- Load config first, then logic -->
+  <script src="config.js"></script>
+  <script src="agent.js"></script>
+
+</body>
+</html>
